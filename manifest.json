@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "LinkedIDontKnowWhatToReplySTLAI",
   "description": "Generates suggestions using Gemini for LinkedIn comments.",
-  "version": "0.1.3",
+  "version": "0.1",
   "content_scripts": [
     {
       "matches": ["https://www.linkedin.com/*"],
