@@ -91,16 +91,15 @@ const fetchSuggestion = async (prompt) => {
 
 const createPrompt = (commentBox) => {
   // Get post details
-  const post = commentBox.closest(".feed-shared-update-v2");
-  if (!post) {
-    return "";
-  }
-  
+  const post =
+    commentBox.closest(".feed-shared-update-v2") ||
+    commentBox.closest(".reusable-search__result-container");
+
   const author = post.querySelector(
-    ".update-components-actor__title"
+    ".update-components-actor__name .visually-hidden"
   )?.innerText;
   const text = post.querySelector(
-    ".feed-shared-update-v2__description"
+    ".feed-shared-inline-show-more-text"
   )?.innerText;
 
   let prompt = `${author}" wrote: ${text}`;
