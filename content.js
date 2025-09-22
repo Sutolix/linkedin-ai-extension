@@ -54,46 +54,53 @@ const fetchSuggestion = async (prompt) => {
   if (!apiKey) {
     return "";
   }
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+
+  const response = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent", {
     method: "POST",
     body: JSON.stringify({
-      model: "gpt-4",
-      messages: [
+      "system_instruction": {
+        "parts": [
+          {
+            "text": "You are an assistant, that writes replies to LinkedIn posts to other persons. Use NEED TO TRANSLATE THE TEXT TO THE SAME LANGUAGE AS OF THE TEXT OF THE POST YOU ARE RECEIVING IN THE USER'S PROMPT. Please sound like a human being. Don't use hashtags, use emojis occasionally, don't repeat too many of the exact words, but simply create a brief and positive reply.  Maybe add something to the discussion. Be creative! You may mention the name of the author, if it's the name of a natural person. Don't mention the name if it's the name of a company or a LinkedIn group."
+          }
+        ]
+      },
+      "contents": [
         {
-          role: "system",
-          content:
-            "You are an assistant, that writes replies to LinkedIn posts to other persons. Use the same language as of the text of the post you are recieving in the user's prompt. Please sound like a human being. Don't use hashtags, use emojis occasionally, don't repeat too many of the exact words, but simply create a brief and positive reply.  Maybe add something to the discussion. Be creative! You may mention the name of the author, if it's the name of a natural person. Don't mention the name if it's the name of a company or a LinkedIn group.",
-        },
-        {
-          role: "user",
-          content: prompt,
+          "role": "user",
+          "parts": [
+            {
+              "text": prompt
+            },
+          ]
         },
       ],
-      temperature: 1,
-      max_tokens: 256,
-      top_p: 0.7,
-      frequency_penalty: 2,
-      presence_penalty: 2,
+      "generationConfig": {
+        "topP": 0.7,
+        "mediaResolution": "MEDIA_RESOLUTION_LOW",
+      },
     }),
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${apiKey}`,
+      "X-goog-api-key": apiKey,
     },
   });
-  return (await response.json()).choices[0].message.content.trim();
+  
+  return (await response.json()).candidates[0].content.parts[0].text.trim();
 };
 
 const createPrompt = (commentBox) => {
   // Get post details
-  const post =
-    commentBox.closest(".feed-shared-update-v2") ||
-    commentBox.closest(".reusable-search__result-container");
-
+  const post = commentBox.closest(".feed-shared-update-v2");
+  if (!post) {
+    return "";
+  }
+  
   const author = post.querySelector(
-    ".update-components-actor__name .visually-hidden"
+    ".update-components-actor__title"
   )?.innerText;
   const text = post.querySelector(
-    ".feed-shared-inline-show-more-text"
+    ".feed-shared-update-v2__description"
   )?.innerText;
 
   let prompt = `${author}" wrote: ${text}`;

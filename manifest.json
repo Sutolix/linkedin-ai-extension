@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "LinkedIDontKnowWhatToReplyAI",
-  "description": "Generates suggestions using ChatGPT for LinkedIn comments.",
+  "name": "LinkedIDontKnowWhatToReplySTLAI",
+  "description": "Generates suggestions using Gemini for LinkedIn comments.",
   "version": "0.1.3",
   "content_scripts": [
     {
