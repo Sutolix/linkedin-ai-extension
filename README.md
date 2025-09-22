@@ -1,7 +1,11 @@
-# LinkedIDontKnowWhatToReplyAI
+# LinkedIDontKnowWhatToReplySTLAI
 
-Browser extension for **Chrome** and **Edge** that gives suggestions for replies to **LinkedIn** posts via **OpenAI**'s **chatgpt-4o**. An **OpenAI Api Key** is required to use it.
+Browser extension for **Chrome** and **Edge** that gives suggestions for replies to **LinkedIn** posts via **Google Gemini**. A **Gemini API Key** is required to use it.
 
-🍿 YouTube Tutorial: [https://youtu.be/68khBWxVP3g?si=OP9B6LdjkOxjZURp](https://youtu.be/68khBWxVP3g?si=OP9B6LdjkOxjZURp)
+## 📺 Original Tutorial
 
-🧑🏽‍💻 Extension in Chrome Web Store: [https://chromewebstore.google.com/detail/linkedidontknowwhattorepl/ejohmconbkcnhmfgemofgbdoojjdhcmm](https://chromewebstore.google.com/detail/linkedidontknowwhattorepl/ejohmconbkcnhmfgemofgbdoojjdhcmm)
+This project is based on the original work by **Franz Bernack**.
+
+🍿 **YouTube Tutorial (Original Project)**: [https://youtu.be/68khBWxVP3g?si=OP9B6LdjkOxjZURp](https://youtu.be/68khBWxVP3g?si=OP9B6LdjkOxjZURp)
+
+> **Note**: The video tutorial shows the original implementation. This fork may contain some differences in functionality or interface, but the fundamental concepts and setup process remain the same.
